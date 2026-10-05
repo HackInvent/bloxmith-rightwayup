@@ -1,0 +1,149 @@
+{
+  "kind": "rightwayup",
+  "version": "0.1.0",
+  "title": "RightWayUp",
+  "description": "Estimate image roll locally with ORTUS RightWayUp; track per-camera drift with confidence abstention and circular smoothing.",
+  "repository_url": "https://github.com/HackInvent/bloxmith-rightwayup",
+  "bloxsmith_compatibility": [
+    "1.0.9"
+  ],
+  "tested_with_bloxsmith": "1.0.9",
+  "prerequisites": [
+    {
+      "type": "python_distribution",
+      "name": "Pillow",
+      "version": ">=10.2"
+    },
+    {
+      "type": "python_distribution",
+      "name": "numpy",
+      "version": ">=1.26,<3"
+    },
+    {
+      "type": "manual",
+      "name": "Linux, Python 3.10+, ONNX Runtime 1.18+ (onnxruntime or onnxruntime-gpu). CUDA mode additionally requires compatible GPU drivers. Pinned weights download only on first frame."
+    }
+  ],
+  "locales": {
+    "en": "locales/en.json",
+    "fr": "locales/fr.json"
+  },
+  "ports": {
+    "inputs": [
+      {
+        "id": 1,
+        "name": "frame",
+        "title": "Image / camera frame",
+        "accepts": [
+          "text/plain",
+          "image/path",
+          "file/path",
+          "application/json",
+          "message/*"
+        ],
+        "multiplicity": "many",
+        "required": true,
+        "execution_requirement": "required_for_execution"
+      }
+    ],
+    "outputs": [
+      {
+        "id": 1,
+        "name": "orientation",
+        "title": "Orientation / status",
+        "emits": [
+          "application/json",
+          "message/*"
+        ],
+        "multiplicity": "many"
+      },
+      {
+        "id": 2,
+        "name": "change",
+        "title": "Orientation change",
+        "emits": [
+          "application/json",
+          "message/*"
+        ],
+        "multiplicity": "many"
+      }
+    ]
+  },
+  "config": {
+    "allowed_root": "",
+    "source_id": "camera",
+    "tier": "fast",
+    "device": "cpu",
+    "abstention": "standard",
+    "min_confidence": 0.65,
+    "smoothing_window": 5,
+    "change_threshold_deg": 10,
+    "min_interval_ms": 1000,
+    "max_age_ms": 10000,
+    "reset_after_sec": 60,
+    "max_sources": 8,
+    "max_bytes": 10485760,
+    "max_pixels": 16777216,
+    "timeout_sec": 30,
+    "download_missing": true,
+    "download_timeout_sec": 180,
+    "threads": 2
+  },
+  "port_capabilities": {
+    "can_add_inputs": false,
+    "can_add_outputs": false
+  },
+  "runtime": {
+    "initial_state": "waiting",
+    "runtime_executable": true,
+    "active_worker": true,
+    "centralized_executor": "generic",
+    "centralized_dependency_mode": "any_event",
+    "file_browser": true,
+    "active_execution_policy": "on_each_event"
+  },
+  "ui_assets": {
+    "modal": [
+      {
+        "kind": "css",
+        "path": "assets/css/properties.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/properties.js"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/settings.js"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/block_modal.js"
+      }
+    ],
+    "inspector_panel": [
+      {
+        "kind": "css",
+        "path": "assets/css/properties.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/properties.js"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/settings.js"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/inspector_panel.js"
+      }
+    ],
+    "node_card": [
+      {
+        "kind": "css",
+        "path": "assets/css/node_card.css"
+      }
+    ]
+  }
+}

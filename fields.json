@@ -1,0 +1,159 @@
+[
+  {
+    "key": "allowed_root",
+    "type": "directory",
+    "label": "Permitted image directory",
+    "help": "Only local files below this directory. Empty uses the application root; no URLs or symbolic links."
+  },
+  {
+    "key": "source_id",
+    "type": "text",
+    "label": "Default camera ID",
+    "help": "Used for plain paths. JSON frames can specify source_id to keep cameras separate."
+  },
+  {
+    "key": "tier",
+    "type": "select",
+    "label": "Model size",
+    "help": "Nano is smallest; Fast is the default; Max is larger and slower. Weights are pinned to ORTUS 1.0.0.",
+    "options": [
+      "nano",
+      "fast",
+      "max"
+    ]
+  },
+  {
+    "key": "device",
+    "type": "select",
+    "label": "Execution device",
+    "help": "CPU uses INT8. CUDA requires a working ONNX Runtime GPU installation; no silent CPU fallback.",
+    "options": [
+      "cpu",
+      "cuda"
+    ]
+  },
+  {
+    "key": "download_missing",
+    "type": "boolean",
+    "label": "Download missing weights",
+    "help": "First frame only; no download during Run preparation. Verified weights stay in this node’s cache. Images never leave the server."
+  },
+  {
+    "key": "min_confidence",
+    "type": "number",
+    "label": "Minimum confidence",
+    "help": "Reject low-confidence estimates, in addition to the model’s calibrated abstention policy.",
+    "min": 0,
+    "max": 1
+  },
+  {
+    "key": "abstention",
+    "type": "select",
+    "label": "Model abstention policy",
+    "help": "Standard uses the tier’s calibrated threshold. Strict may reject more ambiguous images.",
+    "options": [
+      "standard",
+      "strict"
+    ],
+    "advanced": true
+  },
+  {
+    "key": "smoothing_window",
+    "type": "integer",
+    "label": "Smoothing window (frames)",
+    "help": "Circular mean of accepted frames per source. The first full window defines the Run’s reference angle.",
+    "min": 1,
+    "max": 30,
+    "advanced": true
+  },
+  {
+    "key": "change_threshold_deg",
+    "type": "number",
+    "label": "Change threshold (degrees)",
+    "help": "Emit rotated when drift reaches this threshold; returned below half. No repeated alert while still drifted.",
+    "min": 0.1,
+    "max": 180,
+    "advanced": true
+  },
+  {
+    "key": "min_interval_ms",
+    "type": "integer",
+    "label": "Minimum interval per camera (ms)",
+    "help": "During Active Runtime, only the latest pending frame per camera is retained. This does not configure the camera.",
+    "min": 0,
+    "max": 60000,
+    "advanced": true
+  },
+  {
+    "key": "max_age_ms",
+    "type": "integer",
+    "label": "Maximum frame age (ms)",
+    "help": "Drop stale frames/results. Prepare the offline cache before a live stream to avoid first-download delay.",
+    "min": 100,
+    "max": 600000,
+    "advanced": true
+  },
+  {
+    "key": "reset_after_sec",
+    "type": "integer",
+    "label": "Reset reference after inactivity (s)",
+    "help": "Start a new warm-up after this time without an accepted estimate. Tracking is not persisted across Runs.",
+    "min": 1,
+    "max": 3600,
+    "advanced": true
+  },
+  {
+    "key": "max_sources",
+    "type": "integer",
+    "label": "Maximum cameras per Run",
+    "help": "Bound per-source state and pending frames; additional source IDs are dropped until the next Run.",
+    "min": 1,
+    "max": 32,
+    "advanced": true
+  },
+  {
+    "key": "max_bytes",
+    "type": "integer",
+    "label": "Maximum input bytes",
+    "help": "Reject oversized files before image decoding; default 10 MiB.",
+    "min": 1024,
+    "max": 20971520,
+    "advanced": true
+  },
+  {
+    "key": "max_pixels",
+    "type": "integer",
+    "label": "Maximum decoded pixels",
+    "help": "JPEG, PNG, WebP, TIFF or BMP; one frame only, with EXIF orientation applied.",
+    "min": 65536,
+    "max": 16777216,
+    "advanced": true
+  },
+  {
+    "key": "threads",
+    "type": "integer",
+    "label": "CPU inference threads",
+    "help": "Bound ONNX intra-operation parallelism. One owned model process per active node.",
+    "min": 1,
+    "max": 8,
+    "advanced": true
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "label": "Frame processing deadline (s)",
+    "help": "Stop cancels the owned process. Invalid frames report an error without intentionally failing the whole Run.",
+    "min": 1,
+    "max": 120,
+    "advanced": true
+  },
+  {
+    "key": "download_timeout_sec",
+    "type": "integer",
+    "label": "First model loading allowance (s)",
+    "help": "Additional time for the first load/download. Checksum failures are refused, never silently repaired.",
+    "min": 10,
+    "max": 600,
+    "advanced": true
+  }
+]

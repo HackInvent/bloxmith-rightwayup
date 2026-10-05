@@ -1,0 +1,89 @@
+{
+  "model_version": "1.0.0",
+  "repository": "ortusai/rightwayup",
+  "revision": "959453f1f42a79a35221c19003900cef0bef8bac",
+  "reference_code_commit": "822c09128e5f2b345b8da4c6b112ea66965a8fc3",
+  "license": "Apache-2.0",
+  "tiers": {
+    "nano": {
+      "stem": "nano-s112",
+      "size": 112,
+      "thresholds": {
+        "int8": {
+          "standard": 0.536,
+          "strict": 0.8
+        },
+        "fp16": {
+          "standard": 0.535,
+          "strict": 0.8
+        }
+      }
+    },
+    "fast": {
+      "stem": "fast-s224",
+      "size": 224,
+      "thresholds": {
+        "int8": {
+          "standard": 0.626,
+          "strict": 0.738
+        },
+        "fp16": {
+          "standard": 0.629,
+          "strict": 0.738
+        }
+      }
+    },
+    "max": {
+      "stem": "max-l280",
+      "size": 280,
+      "thresholds": {
+        "int8": {
+          "standard": 0.711,
+          "strict": 0.711
+        },
+        "fp16": {
+          "standard": 0.727,
+          "strict": 0.727
+        }
+      }
+    }
+  },
+  "assets": {
+    "fast-s224-fp16.onnx": {
+      "filename": "fast-s224-fp16.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/fast-s224-fp16.onnx",
+      "bytes": 45697160,
+      "sha256": "f7f8aa2b896c095f5378461fad386d048fe7728eb97ee192ed4e495fc37ae657"
+    },
+    "fast-s224-int8.onnx": {
+      "filename": "fast-s224-int8.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/fast-s224-int8.onnx",
+      "bytes": 24437831,
+      "sha256": "5f07e08676068e798efc9206f4ca4130dfc6073ad57289cf6b4c9f8805a5069f"
+    },
+    "max-l280-fp16.onnx": {
+      "filename": "max-l280-fp16.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/max-l280-fp16.onnx",
+      "bytes": 612016103,
+      "sha256": "e4c284ebd0d3050fd678619af2456bac195d936d1683f04cd944cc1a9d5d029b"
+    },
+    "max-l280-int8.onnx": {
+      "filename": "max-l280-int8.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/max-l280-int8.onnx",
+      "bytes": 311661217,
+      "sha256": "9e358f9c51587ec4472ac9496e52dbcaa428886613ebe338fb0654b10bdc3ccf"
+    },
+    "nano-s112-fp16.onnx": {
+      "filename": "nano-s112-fp16.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/nano-s112-fp16.onnx",
+      "bytes": 45549701,
+      "sha256": "714b1df47f3df5d227e84276cf5d43e5a77e27229a8ff0f52f4bb660a80364e1"
+    },
+    "nano-s112-int8.onnx": {
+      "filename": "nano-s112-int8.onnx",
+      "url": "https://huggingface.co/ortusai/rightwayup/resolve/959453f1f42a79a35221c19003900cef0bef8bac/nano-s112-int8.onnx",
+      "bytes": 24142898,
+      "sha256": "63d8b24d2f66d3bed7c22113e666c5864f06a2841a5ae6ad6dfa167445be3923"
+    }
+  }
+}
